@@ -6,24 +6,88 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?colorPrimary"
-
     tools:context=".ui.main.MainFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notesList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:fadingEdgeLength="@dimen/fading"
-        android:requiresFadingEdge="vertical"
-        android:background="@null"
-        tools:listitem="@layout/note_list_item"
-        android:padding="@dimen/content_margin"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?colorSecondary"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/inputCard"
-        />
+        >
+
+        <ImageView
+            android:id="@+id/searchButton"
+            android:layout_width="@dimen/button_size"
+            android:layout_height="@dimen/button_size"
+            android:layout_gravity="end"
+            android:scaleType="center"
+            android:src="@drawable/ic_baseline_search_24"
+            />
+
+        <LinearLayout
+            android:id="@+id/actionButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="end">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline4"
+                android:layout_gravity="center_vertical"
+                android:textSize="@dimen/toolbar_title_text_size"
+                android:textColor="@color/black"
+                android:text="@string/app_name"
+                />
+
+            <ImageView
+                android:id="@+id/sortButton"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
+                android:layout_gravity="end"
+                android:scaleType="center"
+                android:src="@drawable/ic_baseline_arrow_upward_24"
+                />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintBottom_toTopOf="@+id/inputCard">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/notesList"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fadingEdgeLength="@dimen/fading"
+            android:requiresFadingEdge="vertical"
+            android:background="@null"
+            tools:listitem="@layout/note_list_item"
+            android:padding="@dimen/content_margin"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/inputCard"
@@ -33,7 +97,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notesList">
+        app:layout_constraintTop_toBottomOf="@+id/swipeRefreshLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -70,16 +134,15 @@
 
             <ImageView
                 android:id="@+id/addButton"
-                android:layout_width="@dimen/add_note_button_size"
-                android:layout_height="@dimen/add_note_button_size"
+                android:layout_width="@dimen/button_size"
+                android:layout_height="@dimen/button_size"
                 android:src="@drawable/ic_baseline_add_24"
                 android:scaleType="center"
-                android:tint="?colorPrimaryVariant"
                 app:layout_constraintStart_toEndOf="@+id/addNoteEditText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/addNoteEditText"
                 app:layout_constraintBottom_toBottomOf="@+id/addNoteEditText"
-                />
+                app:tint="?colorPrimaryVariant" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

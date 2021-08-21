@@ -12,7 +12,13 @@ interface NotesDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun add(note: Note)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun add(note: List<Note>)
+
     @Delete
     suspend fun delete(note: Note)
+
+    @Query("SELECT * FROM notes WHERE text LIKE :searchText")
+    fun getBySearchText(searchText: String): Flow<List<Note>>
 
 }
