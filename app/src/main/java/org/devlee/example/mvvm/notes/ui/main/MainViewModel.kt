@@ -3,8 +3,10 @@ package org.devlee.example.mvvm.notes.ui.main
 import android.text.format.DateFormat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
 import org.devlee.example.mvvm.notes.locator.locateLazy
@@ -17,6 +19,12 @@ class MainViewModel : ViewModel() {
     private val repository: Repository by locateLazy()
 
     val notes = repository.getAll().asLiveDataFlow()
+    val newCaption = flow<String> {
+        while (true) {
+            emit(createCaption())
+            delay(500L)
+        }
+    }
 
     fun save(note: String) {
         viewModelScope.launch { repository.save(createNote(note)) }

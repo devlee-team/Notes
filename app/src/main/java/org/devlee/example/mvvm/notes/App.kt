@@ -6,6 +6,7 @@ import org.devlee.example.mvvm.notes.locator.ServiceLocator
 import org.devlee.example.mvvm.notes.locator.locate
 import org.devlee.example.mvvm.notes.repository.Repository
 import org.devlee.example.mvvm.notes.repository.room.NotesDatabase
+import org.devlee.example.mvvm.notes.repository.room.NotesDatabaseImpl
 
 class App: Application() {
 
@@ -13,7 +14,7 @@ class App: Application() {
         super.onCreate()
 
         ServiceLocator.register<Context>(this)
-        ServiceLocator.register(NotesDatabase.create(locate()))
+        ServiceLocator.register<NotesDatabase>(NotesDatabaseImpl.create(locate()))
         ServiceLocator.register(Repository(locate()))
     }
 }

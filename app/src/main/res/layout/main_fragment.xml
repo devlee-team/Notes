@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?colorPrimary"
 
     tools:context=".ui.main.MainFragment">
 
@@ -12,45 +13,76 @@
         android:id="@+id/notesList"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="?colorPrimary"
         android:fadingEdgeLength="@dimen/fading"
         android:requiresFadingEdge="vertical"
+        android:background="@null"
         tools:listitem="@layout/note_list_item"
         android:padding="@dimen/content_margin"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/addNoteEditText"
+        app:layout_constraintBottom_toTopOf="@+id/inputCard"
         />
 
-    <EditText
-        android:id="@+id/addNoteEditText"
-        android:layout_width="0dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/inputCard"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="@dimen/add_note_height"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-        android:padding="@dimen/content_margin"
-        android:imeOptions="actionDone"
-        android:background="@null"
-        android:hint="@string/type_here_hint"
-        android:lines="1"
+        android:layout_margin="@dimen/input_margin"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/addButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notesList" />
-
-    <ImageView
-        android:id="@+id/addButton"
-        android:layout_width="@dimen/add_note_button_size"
-        android:layout_height="@dimen/add_note_button_size"
-        android:src="@drawable/ic_baseline_add_24"
-        android:scaleType="center"
-        android:tint="?colorPrimaryVariant"
-        app:layout_constraintStart_toEndOf="@+id/addNoteEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/addNoteEditText"
-        app:layout_constraintBottom_toBottomOf="@+id/addNoteEditText"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/notesList">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/content_margin"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/captionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/field_margin"
+                style="@style/TextAppearance.MaterialComponents.Caption"
+                tools:text="Caption"
+                app:layout_constraintBottom_toTopOf="@+id/addNoteEditText"
+                app:layout_constraintEnd_toStartOf="@+id/addButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+            <EditText
+                android:id="@+id/addNoteEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/add_note_height"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                android:padding="@dimen/content_margin"
+                android:imeOptions="actionDone"
+                android:background="@null"
+                android:hint="@string/type_here_hint"
+                android:lines="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/addButton"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/captionTextView" />
+
+            <ImageView
+                android:id="@+id/addButton"
+                android:layout_width="@dimen/add_note_button_size"
+                android:layout_height="@dimen/add_note_button_size"
+                android:src="@drawable/ic_baseline_add_24"
+                android:scaleType="center"
+                android:tint="?colorPrimaryVariant"
+                app:layout_constraintStart_toEndOf="@+id/addNoteEditText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/addNoteEditText"
+                app:layout_constraintBottom_toBottomOf="@+id/addNoteEditText"
+                />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package org.devlee.example.mvvm.notes.repository
 import kotlinx.coroutines.flow.Flow
 import org.devlee.example.mvvm.notes.repository.room.Note
 import org.devlee.example.mvvm.notes.repository.room.NotesDatabase
+import org.devlee.example.mvvm.notes.repository.room.NotesDatabaseImpl
 
 class Repository(
     private val db: NotesDatabase,

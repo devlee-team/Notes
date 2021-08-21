@@ -41,6 +41,7 @@ class MainFragment : Fragment() {
         }
 
         viewModel.notes.onEach(::renderNotes).launchIn(lifecycleScope)
+        viewModel.newCaption.onEach(::renderCaption).launchIn(lifecycleScope)
 
     }
 
@@ -52,6 +53,10 @@ class MainFragment : Fragment() {
 
             addNoteEditText.setText("")
         }
+    }
+
+    private fun renderCaption(caption: String) {
+        views { captionTextView.text = caption }
     }
 
     private fun renderNotes(notes: List<Note>) {
