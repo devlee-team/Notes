@@ -34,5 +34,6 @@ class MainViewModel : ViewModel() {
     private fun createCaption(): String =
         DateFormat.format("hh:mm:ss, MMM dd, yyyy", Date()).toString()
 
-    fun <T> Flow<T>.asLiveDataFlow() = shareIn(viewModelScope, SharingStarted.Eagerly, replay = 1)
+    private fun <T> Flow<T>.asLiveDataFlow() =
+        shareIn(viewModelScope, SharingStarted.Eagerly, replay = 1)
 }
