@@ -1,4 +1,19 @@
-package org.devlee.example.mvvm.notes.repository.room
+package org.devlee.example.mvvm.notes.repository
 
-class Repository {
+import kotlinx.coroutines.flow.Flow
+import org.devlee.example.mvvm.notes.repository.room.Note
+import org.devlee.example.mvvm.notes.repository.room.NotesDatabase
+
+class Repository(
+    private val db: NotesDatabase,
+) {
+
+    private val dao get() = db.notesDao
+
+    fun getAll(): Flow<List<Note>> = dao.getAll()
+
+    suspend fun save(note: Note) = dao.add(note)
+
+    suspend fun delete(note: Note) = dao.delete(note)
+
 }
