@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.shareIn
 import kotlinx.coroutines.launch
-import org.devlee.example.mvvm.notes.locateLazy
+import org.devlee.example.mvvm.notes.locator.locateLazy
 import org.devlee.example.mvvm.notes.repository.Repository
 import org.devlee.example.mvvm.notes.repository.room.Note
 import java.util.*
